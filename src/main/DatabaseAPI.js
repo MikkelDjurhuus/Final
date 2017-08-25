@@ -445,6 +445,7 @@ class DatabaseAPI {
   Update(navn, id, doc) {
     return new Promise((resolve, reject) => {
       var database = this.GetDatabaseByName(navn);
+      doc.dateEdited = Date.now();
       if (database != null) {
         database.update({
           _id: id

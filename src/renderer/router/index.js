@@ -27,9 +27,29 @@ export default new Router(
         component: require("@/components/Dokumenter")
       },
       {
-        path: '/dokumenter/new',
+        path: '/dokumenter/form',
         name: 'dokumenter-new',
         component: require("@/components/DokumenterForm")
+      },
+      {
+        path: '/dokumenter/form/:id',
+        name: 'dokumenter-edit',
+        component: require("@/components/DokumenterForm")
+      },
+      {
+        path: '/procedurer',
+        name: 'procedurer',
+        component: require("@/components/Procedurer")
+      },
+      {
+        path: '/procedurer/form',
+        name: 'procedurer-new',
+        component: require("@/components/ProcedurerForm")
+      },
+      {
+        path: '/procedurer/form/:id',
+        name: 'procedurer-edit',
+        component: require("@/components/ProcedurerForm")
       },
 
       { path: '*', redirect: '/login' }

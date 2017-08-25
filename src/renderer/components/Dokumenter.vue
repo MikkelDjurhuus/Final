@@ -1,9 +1,10 @@
 <template>
     <page>
         <template slot="content">
-            <archive :data="dokumenter" :filter="filter">
+            <archive :data="dokumenter" :settings="settings" :categories="dokumentkategorier" :database="database">
                 <template slot="empty-text">
-                    Dokument-arkivet er alsidigt. Arkivet bør anvendes til alt dokumentation der ikke kan henføres under de andre menu-punkter. Således vil databehandleraftaler, IT-sikkerhedsrapporter eller lign. naturligt kunne uploades her.
+                    Dokument-arkivet er alsidigt. Arkivet bør anvendes til alt dokumentation der ikke kan henføres under de andre menu-punkter.
+                    Således vil databehandleraftaler, IT-sikkerhedsrapporter eller lign. naturligt kunne uploades her.
                 </template>
             </archive>
         </template>
@@ -11,30 +12,24 @@
 </template>
 
 <script>
-import { bus } from '../main';
-export default {
-    data() {
-        return {
-            dokumenter: [],
-            filter: []
-        }
-    },
-    created() {
-        bus.$on('New', data => { this.New() });
-        this.LoadData("dokumenter");
-    },
-    methods: {
-        New() {
-            this.$router.push({ path: "/dokumenter/new" });
-        },
-        LoadData(type) {
-            Database.FindAll(type).then((result) => {
-                this[type] = result;
-                console.log(result);
-            })
+    import { filter } from './dokument.js'
+    import mixin from '@/components/archive/archiveMixin.js'
+    export default {
+        mixins:[mixin],
+        data() {
+            return {
+                database: { category: "dokumentkategorier", documents: "dokumenter" },
+                dokumenter: [],
+                dokumentkategorier: [],
+                settings: {
+                    filter: filter,
+                    sorting: [0, "asc"],
+                    grouping: "category"
+                }
+            }
         }
     }
-}
+
 </script>
 
 <style>

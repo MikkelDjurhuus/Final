@@ -2,7 +2,7 @@
     <slider>
         <template slot="slider-content">
             <form-page>
-                <template slot="title">Nyt dokument</template>
+                <template slot="title">Nyt procedure</template>
                 <template slot="content">
                     <form-helper :inputs="inputs" template="two-columns">
                     </form-helper>
@@ -13,14 +13,14 @@
 </template>
 
 <script>
-    import dokument from './dokument.js'
+    import procedure from './procedure.js'
     import mixin from '@/components/form/formMixin.js'
     export default {
         mixins: [mixin],
         data() {
             return {
-                inputs: dokument,
-                database: "dokumenter"
+                inputs: procedure,
+                database: "procedurer"
             }
         }
     }

@@ -7,7 +7,7 @@
             <img v-else class="inline btn-remove" src='/static/svg/remove.svg' @click="newCategory = !newCategory">
             <select id="categories" :name="data.title" v-model="data.value">
                 <option disabled="" value="">Vælg eller opret en kategori</option>
-                <option v-for="(item,index) in data.options" :value="item._id">{{item.titel}}</option>
+                <option v-for="(item,index) in data.options" :value="item._id">{{item.title}}</option>
             </select>
         </template>
         <template slot="new-row" v-if="newCategory">
@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         CreateCategory() {
-            Database.Insert(this.data.category, { titel: this.newCategoryText }).then((result) => {
+            Database.Insert(this.data.category, { title: this.newCategoryText }).then((result) => {
                 this.data.options.push(result);
                 this.data.value = result._id;
                 this.newCategory = false;
