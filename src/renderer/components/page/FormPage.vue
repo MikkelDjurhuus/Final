@@ -1,10 +1,10 @@
 <template>
     <div class="form-page">
         <div class="overlay">
-            <a @click="Close()" class="close-form">
+            <a @click.stop="Close()" class="close-form">
                 <img src="/static/svg/close_button.svg">
             </a>
-            <a @click="Submit()" class="submit-form">
+            <a @click.stop="Submit()" class="submit-form">
                 <img src="/static/svg/finish.svg">
             </a>
             <div class="wrapper">
@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         Close() {
-            this.$router.go(-1);
+            this.$router.push({ path: "/" + this.database.documents })
         },
         Submit() {
             bus.$emit("Submit");
@@ -99,6 +99,9 @@ export default {
     .container {
         width: 100% !important;
     }
+    .inputCluster input {
+        margin-bottom: 10px;
+    }
 
 
     .close-form {
@@ -143,6 +146,7 @@ export default {
     }
 
     input[type="text"],
+    input[type="textarea"],
     input[type="email"],
     input[type="file"],
     input[type="date"],
@@ -167,6 +171,20 @@ export default {
         transition: box-shadow .2s linear;
     }
 
+    input:focus,
+    input:active,
+    select:focus,
+    select:active,
+    textarea:focus,
+    textarea:active {
+        -webkit-box-shadow: 2px 0px 14px 0px rgba(0, 0, 0, 0.09);
+        -moz-box-shadow: 2px 0px 14px 0px rgba(0, 0, 0, 0.09);
+        box-shadow: 2px 0px 14px 0px rgba(0, 0, 0, 0.09);
+    }
+    textarea,
+    input[type="textarea"] {
+        height: 115px;
+    }
 
     button {
         margin-left: 38px;

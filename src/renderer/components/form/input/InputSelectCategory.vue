@@ -1,7 +1,7 @@
 <template>
     <component :is="template">
-        <template slot="title">{{data.title}} - </template>
-        <template slot="description">{{data.description}}</template>
+        <template slot="title">{{data.title}}</template>
+        <template slot="description">{{data.description?' - '+data.description:''}}</template>
         <template slot="input">
             <img v-if="!newCategory" class="inline btn-add" src='/static/svg/plus.svg' @click="newCategory = !newCategory">
             <img v-else class="inline btn-remove" src='/static/svg/remove.svg' @click="newCategory = !newCategory">

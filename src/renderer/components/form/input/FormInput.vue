@@ -8,7 +8,9 @@ import InputCluster from './InputCluster'
 import InputDatePicker from './InputDatePicker'
 import InputSelect from './InputSelect'
 import InputRadioSelect from './InputRadioSelect'
+import InputRadio from './InputRadio'
 import InputSelectCategory from './InputSelectCategory'
+import InputSelectRadioGroup from './InputSelectRadioGroup'
 import InputText from './InputText'
 import InputTextArea from './InputTextArea'
 import InputUpload from './InputUpload'
@@ -19,7 +21,9 @@ export default {
         "input-datepicker":InputDatePicker,
         "input-select":InputSelect,
         "input-radio-select":InputRadioSelect,
+        "input-radio":InputRadio,
         "input-select-category":InputSelectCategory,
+        "input-select-radiogroup":InputSelectRadioGroup,
         "input-text":InputText,
         "input-textarea":InputTextArea,
         "input-upload":InputUpload

@@ -1,4 +1,5 @@
 <template>
+    <!-- v-on:keyup.37="prev()" v-on:keyup.39="next()" -->
     <div class="slider">
         <div class="slider-content" ref="slider-content">
             <slot name="slider-content"></slot>
@@ -30,7 +31,19 @@ export default {
     mounted() {
         this.initSlider();
     },
+    created: function() {
+        window.addEventListener('keydown', this.handleInput);
+    },
+    beforeDestroy: function() {
+        window.removeEventListener('keydown', this.handleInput);
+    },
     methods: {
+        handleInput: function(e) {
+            if(e.keyCode === 37)
+            this.prev();
+            if(e.keyCode === 39)
+            this.next();
+        },
         initSlider() {
             this.slides = $(".slider-content").children().hide();
             for (var i = 0; i < this.slides.length; i++) {
@@ -44,18 +57,18 @@ export default {
         },
         prev() {
             if (this.currentSlide > 0) {
+                $(this.slides[this.currentSlide]).hide();
                 this.prevSlide = this.currentSlide;
                 this.currentSlide = window.currentSlide -= 1;
-                $(".slider-content").find("#slide" + this.prevSlide).hide();
-                $(".slider-content").find("#slide" + this.currentSlide).show();
+                $(this.slides[this.currentSlide]).show();
             }
         },
         next() {
             if (this.currentSlide < this.slides.length - 1) {
+                $(this.slides[this.currentSlide]).hide();
                 this.prevSlide = this.currentSlide;
                 this.currentSlide = window.currentSlide += 1;
-                $(".slider-content").find("#slide" + this.prevSlide).hide();
-                $(".slider-content").find("#slide" + this.currentSlide).show();
+                $(this.slides[this.currentSlide]).show();
             }
         }
     }

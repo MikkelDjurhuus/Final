@@ -1,6 +1,7 @@
 <template>
     <component :is="template">
         <template slot="title">{{data.title}}</template>
+        <template slot="description">{{data.description?' - '+data.description:''}}</template>
         <template slot="input">
             <li v-for="item in data.value">{{item}}
                 <i class="fa fa-times" @click="Remove(item)" aria-hidden="true"></i>

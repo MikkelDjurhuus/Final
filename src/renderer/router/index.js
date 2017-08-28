@@ -51,6 +51,51 @@ export default new Router(
         name: 'procedurer-edit',
         component: require("@/components/ProcedurerForm")
       },
+      {
+        path: '/kontroller',
+        name: 'kontroller',
+        component: require("@/components/Kontroller")
+      },
+      {
+        path: '/kontroller/form',
+        name: 'kontroller-new',
+        component: require("@/components/KontrollerForm")
+      },
+      {
+        path: '/kontroller/form/:id',
+        name: 'kontroller-edit',
+        component: require("@/components/KontrollerForm")
+      },
+      {
+        path: '/hændelser',
+        name: 'hændelser',
+        component: require("@/components/Hændelser")
+      },
+      {
+        path: '/hændelser/form',
+        name: 'hændelser-new',
+        component: require("@/components/HændelserForm")
+      },
+      {
+        path: '/hændelser/form/:id',
+        name: 'hændelser-edit',
+        component: require("@/components/HændelserForm")
+      },
+      {
+        path: '/henvendelser',
+        name: 'henvendelser',
+        component: require("@/components/Henvendelser")
+      },
+      {
+        path: '/henvendelser/form',
+        name: 'henvendelser-new',
+        component: require("@/components/HenvendelserForm")
+      },
+      {
+        path: '/henvendelser/form/:id',
+        name: 'henvendelser-edit',
+        component: require("@/components/HenvendelserForm")
+      },
 
       { path: '*', redirect: '/login' }
     ]

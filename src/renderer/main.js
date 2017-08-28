@@ -37,6 +37,14 @@ Vue.component("slider", Slider);
 Vue.component("form-helper", Form);
 Vue.component("two-columns", TwoColumns);
 
+Vue.directive('focus', {
+  inserted: function (el, binding, vnode) {
+    Vue.nextTick(function () {
+      el.focus()
+    })
+  }
+})
+
 console.log(Database, data_path);
 Database.LoadDatabase(data_path).then(() => {
   /* eslint-disable no-new */

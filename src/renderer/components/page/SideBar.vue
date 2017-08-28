@@ -11,9 +11,18 @@
                 <li>
                     <router-link to="/dokumenter">Dokumenter</router-link>
                 </li>
-                <!-- <li>
+                <li>
+                    <router-link to="/procedurer">Procedurer</router-link>
+                </li>
+                <li>
+                    <router-link to="/kontroller">Kontroller</router-link>
+                </li>
+                <li>
+                    <router-link to="/hændelser">Hændelses Log</router-link>
+                </li>
+                <li>
                     <router-link to="/henvendelser">Henvendelser</router-link>
-                </li> -->
+                </li>
             </ul>
         </div>
         <div class="">

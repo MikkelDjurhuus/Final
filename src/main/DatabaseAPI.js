@@ -40,7 +40,6 @@ class DatabaseAPI {
   }
 
   LoadDatabase(path) {
-    console.log("Loading database at: ", path);
     var b = new Promise((resolve, reject) => {
       this.behandlingsaktiviteter = new nedb({
         filename: path + '/behandlingsaktiviteter.db'
@@ -272,7 +271,6 @@ class DatabaseAPI {
   FindAll(navn) {
     return new Promise((resolve, reject) => {
       var database = this.GetDatabaseByName(navn);
-      console.log(database, navn);
       if (database != null) {
         database.find({}, (err, docs) => {
           if (err) {
@@ -311,6 +309,22 @@ class DatabaseAPI {
       var database = this.GetDatabaseByName(navn);
       if (database != null) {
         database.find(query, (err, docs) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(docs);
+          }
+        })
+      } else {
+        reject('Der findes ikke en database med det navn');
+      }
+    })
+  }
+  FindOne(navn, query) {
+    return new Promise((resolve, reject) => {
+      var database = this.GetDatabaseByName(navn);
+      if (database != null) {
+        database.findOne(query, (err, docs) => {
           if (err) {
             reject(err);
           } else {
