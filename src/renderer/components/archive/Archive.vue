@@ -2,11 +2,11 @@
     <div class="archive">
         <div class="container">
             <section v-if="data.length < 1">
-                <empty>
+                <!-- <empty>
                     <template slot="empty-text">
                         <slot name="empty-text"></slot>
                     </template>
-                </empty>
+                </empty> -->
             </section>
             <section v-else>
                 <div class="icons col-md-12">
