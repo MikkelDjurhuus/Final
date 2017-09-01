@@ -9,6 +9,8 @@ Vue.config.productionTip = false
 
 
 global.$ = global.jQuery = window.$ = window.jQuery = require('jquery');
+import alterClass from '@/assets/js/alterClass'
+$.fn.alterClass = alterClass;
 global._ = window._ = require('underscore');
 global.moment = window.moment = require('moment');
 global.fs = require('fs')

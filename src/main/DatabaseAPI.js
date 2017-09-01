@@ -5,15 +5,15 @@ const nedb = require('nedb');
 class DatabaseAPI {
 
   constructor() {
-    this.behandlingsaktiviteter = null;
-    this.behandlingsaktivitetkategorier = null;
+    this.fortegnelser = null;
+    this.fortegnelsekategorier = null;
     this.dokumenter = null;
     this.dokumentkategorier = null;
     this.kontroller = null;
     this.kontrolkategorier = null;
-    this.henvendelser = null;
     this.hændelser = null;
     this.hændelsekategorier = null;
+    this.henvendelser = null;
     this.henvendelsekategorier = null;
     this.procedurer = null;
     this.procedurekategorier = null;
@@ -40,11 +40,23 @@ class DatabaseAPI {
   }
 
   LoadDatabase(path) {
-    var b = new Promise((resolve, reject) => {
-      this.behandlingsaktiviteter = new nedb({
-        filename: path + '/behandlingsaktiviteter.db'
+    var i = new Promise((resolve, reject) => {
+      this.indstillinger = new nedb({
+        filename: path + "/indstillinger.db"
       })
-      this.behandlingsaktiviteter.loadDatabase(function (err) {
+      this.indstillinger.loadDatabase(function (err) {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(true)
+        }
+      })
+    })
+    var b = new Promise((resolve, reject) => {
+      this.fortegnelser = new nedb({
+        filename: path + '/fortegnelser.db'
+      })
+      this.fortegnelser.loadDatabase(function (err) {
         if (err) {
           reject(err)
         } else {
@@ -53,10 +65,10 @@ class DatabaseAPI {
       })
     })
     var bk = new Promise((resolve, reject) => {
-      this.behandlingsaktivitetkategorier = new nedb({
-        filename: path + '/behandlingsaktivitkategorier.db'
+      this.fortegnelsekategorier = new nedb({
+        filename: path + '/fortegnelsekategorier.db'
       })
-      this.behandlingsaktivitetkategorier.loadDatabase(function (err) {
+      this.fortegnelsekategorier.loadDatabase(function (err) {
         if (err) {
           reject(err)
         } else {
@@ -226,15 +238,15 @@ class DatabaseAPI {
       })
     })
 
-    return Promise.all([b, bk, d, dk, k, kk, h, hk, p, pk, a, db, s, hv, hvk])
+    return Promise.all([i,b, bk, d, dk, k, kk, h, hk, p, pk, a, db, s, hv, hvk])
   }
 
   GetDatabaseByName(name) {
     switch (name) {
-      case 'behandlingsaktiviteter':
-        return this.behandlingsaktiviteter;
-      case 'behandlingsaktivitetkategorier':
-        return this.behandlingsaktivitetkategorier;
+      case 'fortegnelser':
+        return this.fortegnelser;
+      case 'fortegnelsekategorier':
+        return this.fortegnelsekategorier;
       case 'dokumenter':
         return this.dokumenter;
       case 'dokumentkategorier':

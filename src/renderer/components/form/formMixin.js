@@ -45,7 +45,6 @@ export default {
             })
         },
         Submit() {
-
             let doc = this.GetValues(this.inputs);
             this.checkCategory(doc).then(() => {
                 doc = this.PreSubmit(doc);
@@ -63,6 +62,7 @@ export default {
                     })
                 }
             });
+            bus.$off('Submit');
         },
         PreSubmit(doc) {
             return doc;
@@ -93,15 +93,17 @@ export default {
         Fetch(id) {
             Database.FindID(this.database.documents, id).then((result) => {
                 let inputs = {};
-                this.inputs.forEach(function(element) {
-                    inputs = {...inputs, ...element};
-                }, this);
+                if (Array.isArray(this.inputs)) {
+                    this.inputs.forEach(function (element) {
+                        inputs = { ...inputs, ...element };
+                    }, this);
+                }
+                else {
+                    inputs = this.inputs;
+                }
                 for (var key in result) {
-                    if (result.hasOwnProperty(key)) {
-                        if (key === "sender")
-                            if (inputs[key] !== undefined) {
-                            inputs[key].value = result[key];
-                        }
+                    if (inputs.hasOwnProperty(key)) {
+                        inputs[key].value = result[key];
                     }
                 }
             })

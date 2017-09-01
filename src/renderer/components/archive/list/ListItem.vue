@@ -8,7 +8,7 @@
             </slot>
         </div>
         <slot name="list-item">
-            <td v-for="(item,index) in data" v-if="index!='_id'">
+            <td v-for="(item,index) in filter" v-if="index!='_id'">
                 <p>{{item,index | formatted}}</p>
             </td>
         </slot>
@@ -18,7 +18,7 @@
 <script>
 import { bus } from '@/main';
 export default {
-    props: ['data'],
+    props: ['data', "filter"],
     computed: {
         colLength: function() {
             return Object.keys(this.data).length - 1;
@@ -47,6 +47,7 @@ export default {
         }
     },
     created() {
+        console.log(this.filter)
     },
     methods: {
         colWidth(index) {

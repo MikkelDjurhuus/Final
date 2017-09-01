@@ -30,15 +30,38 @@
                 <span></span>
                 <img src="/static/svg/bell.svg">
             </a>
-            <a @click="" class="settings">
+            <a @click="showSettings = !showSettings" class="settings">
                 <img src="/static/svg/cog3.svg">
             </a>
         </div>
+        <settings-popup v-if="showSettings" :settings="settings"></settings-popup>
     </div>
 </template>
 
 <script>
+import { bus } from '@/main';
+import Settings from '@/components/popup/Settings'
 export default {
+    components: {
+        "settings-popup": Settings
+    },
+    data() {
+        return {
+            settings: {
+                generelt: {},
+                ansvarlige: {},
+                database: {},
+                databehandlere: {},
+                systemer: {},
+                user: {}
+            },
+            showSettings: false,
+            showNotifications: false
+        }
+    },
+    created() {
+        bus.$on('settings-close', () => { this.showSettings = false; });
+    }
 }
 </script>
 
@@ -61,34 +84,35 @@ export default {
         top: 20px;
     }
 
-
-    ul {
-        padding: 0;
-        margin: 0;
-        li {
-            list-style: none;
-            display: inline-block;
-            transition: all .2s linear;
-            a {
-                padding: 4px 15px;
-                color: #424242;
-                border-radius: 12px;
-                letter-spacing: 1px;
-                font-size: 8pt;
-                text-transform: uppercase;
-                @include montserrat-500();
-                display: block;
+    .nav {
+        ul {
+            padding: 0;
+            margin: 0;
+            li {
+                list-style: none;
+                display: inline-block;
                 transition: all .2s linear;
-                &:hover,
-                &:focus,
-                &:active {
-                    text-decoration: none;
-                    color: #2a2a2a;
+                a {
+                    padding: 4px 15px;
+                    color: #424242;
+                    border-radius: 12px;
+                    letter-spacing: 1px;
+                    font-size: 8pt;
+                    text-transform: uppercase;
+                    @include montserrat-500();
+                    display: block;
+                    transition: all .2s linear;
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        text-decoration: none;
+                        color: #2a2a2a;
+                    }
                 }
-            }
-            .active,
-            .router-link-active {
-                transform: scale(1.2)!important;
+                .active,
+                .router-link-active {
+                    transform: scale(1.2)!important;
+                }
             }
         }
     }

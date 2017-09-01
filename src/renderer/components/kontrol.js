@@ -62,5 +62,5 @@ export let filter = {
     "interval": { checked: true, text: "Interval", format: "interval" },
     "dateCreated": { checked: false, text: "Oprettet", format: "date" },
     "dateEdited": { checked: false, text: "Redigeret", format: "date" },
-    "forfalden": { checked: true, text: "Forfalden", format: "date" },
+    // "forfalden": { checked: true, text: "Forfalden", format: "date" },
 }

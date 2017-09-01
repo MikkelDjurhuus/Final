@@ -1,10 +1,13 @@
 <template>
     <page>
         <template slot="content">
-            <archive :data="kontroller" :settings="settings" :categories="kontroltegorier" :database="database">
+            <archive :filter="filter" @New="New" :data="data">
                 <template slot="empty-text">
-                        En procedurer er en fremgangsmåde eller en manual for hvordan virksomheden ønsker en bestemt handling udført.
-                        Der kan knytte sig procedurer til behandlingsaktiviteter, kontroller eller henvendelser der fortæller hvordan den enkelte situation skal håndteres i overensstemmelse med virksomhedens politikker. 
+                    En procedurer er en fremgangsmåde eller en manual for hvordan virksomheden ønsker en bestemt handling udført. Der kan knytte sig procedurer til behandlingsaktiviteter, kontroller eller henvendelser der fortæller hvordan den enkelte situation skal håndteres i overensstemmelse med virksomhedens politikker.
+                </template>
+                <template slot="content">
+                    <list :settings="settings" :data="data" :database="database" :filter="filter">
+                    </list>
                 </template>
             </archive>
         </template>
@@ -12,26 +15,20 @@
 </template>
 
 <script>
-    import { filter } from './kontrol.js'
-    import mixin from '@/components/archive/archiveMixin.js'
-    export default {
-        mixins:[mixin],
-        data() {
-            return {
-                database: { category: "kontrolkategorier", documents: "kontroller" },
-                kontroller: [],
-                kontroltegorier: [],
-                settings: {
-                    filter: filter,
-                    sorting: [0, "asc"],
-                    grouping: "category"
-                }
+import { filter } from './kontrol.js'
+import mixin from '@/components/archive/archiveMixin.js'
+export default {
+    mixins: [mixin],
+    data() {
+        return {
+            database: { category: "kontrolkategorier", documents: "kontroller" },
+            kontroller: [],
+            kontroltegorier: [],
+            filter: filter,
+            settings: {
+                groupedBy: "category"
             }
-        },
-    }
-
+        }
+    },
+}
 </script>
-
-<style>
-
-</style>

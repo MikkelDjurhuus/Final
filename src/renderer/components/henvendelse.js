@@ -60,16 +60,4 @@ export let filter = {
     "status": { required: true, checked: true, text: "Status" },
     "dateCreated": { checked: false, text: "Oprettet", format: "date" },
     "dateEdited": { checked: false, text: "Redigeret", format: "date" },
-    extra: {
-        "Modtaget": {
-            "dateRecieved": { checked: true, required: true, text: "Henvendelse modtaget d.", format: "date" },
-        },
-        "Under behandling": {
-            "dateStarted": { checked: true, required: true, text: "Henvendelse påbegyndt d.", format: "date" },
-        },
-        "Færdigbehandlet": {
-            "dateProcessed": { checked: true, required: true, text: "Henvendelse færdigbehandlet d.", format: "date" },
-        },required: true
-    }
-
 }

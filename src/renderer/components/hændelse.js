@@ -61,8 +61,9 @@ export default class Hændelse {
 }
 
 export let filter = {
-    "title": { checked: true, text: "Navn" },
-    "dateReEvaluate": { checked: true, text: "Dato for revidering", format: "date" },
+    "ansvarlig": { checked: true, text: "Ansvarlig" },
+    "dateRecieved": { checked: true, text: "Hændelse modtaget d.", format: "date" },
+    "correctionDate": { checked: true, text: "Dato for udbedring", format: "date" },
     "dateCreated": { checked: false, text: "Oprettet", format: "date" },
     "dateEdited": { checked: true, text: "Redigeret", format: "date" },
 }
